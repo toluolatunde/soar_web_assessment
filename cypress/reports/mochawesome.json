@@ -1,0 +1,268 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 4,
+    "passes": 2,
+    "pending": 0,
+    "failures": 2,
+    "start": "2024-09-18T05:52:07.215Z",
+    "end": "2024-09-18T05:52:56.399Z",
+    "duration": 37716,
+    "testsRegistered": 4,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "757db9d7-fa5e-4a49-971b-f24806f67d4e",
+      "title": "",
+      "fullFile": "cypress/e2e/testcases/soar_01_registrationTestCase.js",
+      "file": "cypress/e2e/testcases/soar_01_registrationTestCase.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "71c174ea-0562-40af-89f8-0a34b41b593e",
+          "title": "ParaBank Registration Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Navigate to website, enter test data from example, and register",
+              "fullTitle": "ParaBank Registration Tests Navigate to website, enter test data from example, and register",
+              "timedOut": null,
+              "duration": 10338,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "//I am intercepting the api call to save in endpoint.json\ncy.intercept(\"*\", req => {\n  req.on(\"response\", res => {\n    endpoints.push({\n      url: req.url,\n      method: req.method,\n      requestBody: req.body,\n      responseBody: res.body\n    });\n  });\n}).as(\"allRequests\");\ncy.visit(baseUrl);\ncy.xpath(config.registerButtonOnHomepageXpath).click(); // Navigate to registration page\ncy.url().should(\"include\", \"/register\");\ncy.xpath(config.registerPageHeaderTitleXpath).should(\"be.visible\").and(\"have.text\", \"Signing up is easy!\");\ncy.xpath(config.registerPageHeaderDescriptionXpath).should(\"be.visible\").and(\"have.text\", \"If you have an account with us you can sign-up for free instant online access. You will have to provide some personal information.\");\n// Fill registration form\ncy.xpath(config.registerFirstNameXpath).type(testData.firstName);\ncy.xpath(config.registerLastNameXpath).type(testData.lastName);\ncy.xpath(config.registerAddressXpath).type(testData.address.street);\ncy.xpath(config.registerCityXpath).type(testData.address.city);\ncy.xpath(config.registerStateXpath).type(testData.address.state);\ncy.xpath(config.registerZipCodeXpath).type(testData.address.zipCode);\ncy.xpath(config.registerPhoneXpath).type(testData.phoneNumber);\ncy.xpath(config.registerSsnXpath).type(testData.ssn);\ncy.xpath(config.registerUsernameXpath).type(testData.username);\ncy.xpath(config.registerPasswordXpath).type(testData.password);\n//cy.xpath(config.registerConfirmPasswordXpath).type(testData.password);\ncy.xpath(config.registerButtonXpath).click(); // Submit registration\n// Save endpoints to a fixtures as endpoints\ncy.wait(\"@allRequests\").then(() => {\n  cy.writeFile(\"cypress/fixtures/endpoints.json\", endpoints);\n});\n// Assert successful registration\ncy.contains(\"Your account was created successfully. You are now logged in.\").should(\"be.visible\");",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Your account was created successfully. You are now logged in.' but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Your account was created successfully. You are now logged in.' but never did.\n    at Context.eval (webpack://soar---assessment/./cypress/e2e/testcases/soar_01_registrationTestCase.js:68:6)",
+                "diff": null
+              },
+              "uuid": "894827c3-74d1-439c-8773-9bfd38607dc7",
+              "parentUUID": "71c174ea-0562-40af-89f8-0a34b41b593e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "894827c3-74d1-439c-8773-9bfd38607dc7"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 10338,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "2e67c7b6-b451-4b68-8f79-670d2e3ef483",
+      "title": "",
+      "fullFile": "cypress/e2e/testcases/soar_02_loginTestCase.js",
+      "file": "cypress/e2e/testcases/soar_02_loginTestCase.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0dec98bb-9100-41c9-95e5-c902e2c46445",
+          "title": "ParaBank Login Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Navigate to website, enter generated test data, and login",
+              "fullTitle": "ParaBank Login Tests Navigate to website, enter generated test data, and login",
+              "timedOut": null,
+              "duration": 3335,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//I am intercepting the api call to save in endpoint.json\ncy.intercept(\"*\", req => {\n  req.on(\"response\", res => {\n    endpoints.push({\n      url: req.url,\n      method: req.method,\n      requestBody: req.body,\n      responseBody: res.body\n    });\n  });\n}).as(\"allRequests\");\n//cy.visit(`${baseUrl}${loginPath}`); // Navigate to login page using the declared path\ncy.visit(baseUrl);\ncy.xpath(config.loginPageHeaderTitleXpath).should(\"be.visible\").and(\"have.text\", \"Customer Login\");\ncy.xpath(config.loginUsernameXpath).type(testData.username);\ncy.xpath(config.loginPasswordXpath).type(testData.password);\ncy.xpath(config.loginButtonXpath).click();\n// Assert successful login\n// cy.contains(\"Welcome, \" + testData.username).should(\"be.visible\");\n//cy.wait(\"@allRequests\");\ncy.wait(\"@allRequests\").then(() => {\n  // Save endpoints to a JSON file\n  cy.writeFile(\"cypress/fixtures/endpoints.json\", endpoints);\n});",
+              "err": {},
+              "uuid": "a8e52293-094e-4063-829c-6cab1e79785f",
+              "parentUUID": "0dec98bb-9100-41c9-95e5-c902e2c46445",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a8e52293-094e-4063-829c-6cab1e79785f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3335,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "eb54e580-fed9-4bef-a2ce-82ec17f50434",
+      "title": "",
+      "fullFile": "cypress/e2e/testcases/soar_03_duplicateRegistrationTestCases.js",
+      "file": "cypress/e2e/testcases/soar_03_duplicateRegistrationTestCases.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [
+        {
+          "title": "An uncaught error was detected outside of a test",
+          "fullTitle": "An uncaught error was detected outside of a test",
+          "timedOut": null,
+          "duration": 197,
+          "state": "failed",
+          "speed": null,
+          "pass": false,
+          "fail": true,
+          "pending": false,
+          "context": null,
+          "code": "throw err;",
+          "err": {
+            "message": "TypeError: The following error originated from your test code, not from Cypress.\n\n  > Cannot read properties of undefined (reading 'siteUrl')\n\nWhen Cypress detects uncaught errors originating from your test code it will automatically fail the current test.\n\nCypress could not associate this error to any specific test.\n\nWe dynamically generated a new test to display this failure.",
+            "estack": "TypeError: The following error originated from your test code, not from Cypress.\n\n  > Cannot read properties of undefined (reading 'siteUrl')\n\nWhen Cypress detects uncaught errors originating from your test code it will automatically fail the current test.\n\nCypress could not associate this error to any specific test.\n\nWe dynamically generated a new test to display this failure.\n    at Suite.eval (webpack://soar---assessment/./cypress/e2e/testcases/soar_03_duplicateRegistrationTestCases.js:3:25)\n    at eval (webpack://soar---assessment/./cypress/e2e/testcases/soar_03_duplicateRegistrationTestCases.js:1:0)\n    at eval (http://localhost:49559/__cypress/tests?p=cypress/e2e/testcases/soar_03_duplicateRegistrationTestCases.js:169:3)\n    at eval (http://localhost:49559/__cypress/tests?p=cypress/e2e/testcases/soar_03_duplicateRegistrationTestCases.js:171:12)\n    at eval (<anonymous>)",
+            "diff": null
+          },
+          "uuid": "5c5fa36d-6754-4710-926c-cd69f3277bd6",
+          "parentUUID": "eb54e580-fed9-4bef-a2ce-82ec17f50434",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [],
+      "passes": [],
+      "failures": [
+        "5c5fa36d-6754-4710-926c-cd69f3277bd6"
+      ],
+      "pending": [],
+      "skipped": [],
+      "duration": 197,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "0aade7be-3fbc-4cb9-b6a6-0d9f5dc9b164",
+      "title": "",
+      "fullFile": "cypress/e2e/testcases/soar_04_mobielResolutionTestCase.js",
+      "file": "cypress/e2e/testcases/soar_04_mobielResolutionTestCase.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "bf1d3eb0-76af-48e2-a9e4-2825709728cb",
+          "title": "ParaBank Mobile Resolution Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Test mobile devices compatibility",
+              "fullTitle": "ParaBank Mobile Resolution Tests Test mobile devices compatibility",
+              "timedOut": null,
+              "duration": 23846,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const mobileResolutions = [[375, 667],\n// iPhone 6/7/8\n[768, 1024],\n// iPad\n[414, 896],\n// iPhone 11 Pro Max - Bigger screen test\n[360, 640],\n// Android\n[1440, 2560] // Android Tablet\n];\nmobileResolutions.forEach(resolution => {\n  cy.viewport(resolution[0], resolution[1]);\n  cy.visit(baseUrl);\n  cy.xpath(config.registerButtonOnHomepageXpath).click(); // Navigate to registration page\n  cy.url().should(\"include\", \"/register\");\n  cy.xpath(config.registerPageHeaderTitleXpath).should(\"be.visible\").and(\"have.text\", \"Signing up is easy!\");\n  cy.xpath(config.registerPageHeaderDescriptionXpath).should(\"be.visible\").and(\"have.text\", \"If you have an account with us you can sign-up for free instant online access. You will have to provide some personal information.\");\n  // Validate elements are visible and values can be entered on each field\n  cy.xpath(config.registerFirstNameXpath).should('be.visible').type(testData.firstName);\n  cy.xpath(config.registerLastNameXpath).should('be.visible').type(testData.lastName);\n  cy.xpath(config.registerAddressXpath).should('be.visible').type(testData.address.street);\n  cy.xpath(config.registerCityXpath).should('be.visible').type(testData.address.city);\n  cy.xpath(config.registerStateXpath).should('be.visible').type(testData.address.state);\n  cy.xpath(config.registerZipCodeXpath).should('be.visible').type(testData.address.zipCode);\n  cy.xpath(config.registerPhoneXpath).should('be.visible').type(testData.phoneNumber);\n  cy.xpath(config.registerSsnXpath).should('be.visible').type(testData.ssn);\n  cy.xpath(config.registerUsernameXpath).should('be.visible').type(testData.username);\n  cy.xpath(config.registerPasswordXpath).should('be.visible').type(testData.password);\n  cy.xpath(config.registerConfirmPasswordXpath).should('be.visible').type(testData.password);\n  cy.xpath(config.registerButtonXpath).should('be.visible');\n  // Validate same on for login\n  cy.xpath(config.loginPageHeaderTitleXpath).should(\"be.visible\").and(\"have.text\", \"Customer Login\");\n  cy.xpath(config.loginUsernameXpath).should('be.visible').type(testData.username);\n  cy.xpath(config.loginPasswordXpath).should('be.visible').type(testData.password);\n  cy.xpath(config.loginButtonXpath).should(\"be.visible\");\n});",
+              "err": {},
+              "uuid": "809cda6c-91f1-4450-8260-72dd2196965e",
+              "parentUUID": "bf1d3eb0-76af-48e2-a9e4-2825709728cb",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "809cda6c-91f1-4450-8260-72dd2196965e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 23846,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mocha",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

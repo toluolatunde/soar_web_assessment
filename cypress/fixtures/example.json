@@ -1,0 +1,22 @@
+{
+  "testUser": {
+    "username": "testuser1234",
+    "password": "Test@1234",
+    "email": "testuser1234@example.com",
+    "firstName": "Test",
+    "lastName": "User",
+    "address": {
+      "street": "1234 Test St",
+      "city": "Test City",
+      "state": "TS",
+      "zipCode": "12345"
+    },
+    "phoneNumber": "1234567895",
+    "ssn": "123-45-6789"
+  },
+  "mobileResolutions": [
+    [375, 667],
+    [768, 1024],
+    [414, 896]
+  ]
+}

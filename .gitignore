@@ -1,0 +1,14 @@
+# Node.js dependencies
+node_modules/
+dist/
+build/
+*.log
+.env
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+cypress/videos
+cypress/screenshots
+mocha/
+mochawesome/
